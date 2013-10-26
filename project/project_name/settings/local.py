@@ -70,5 +70,5 @@ DEBUG_TOOLBAR_CONFIG = {
 ########## END TOOLBAR CONFIGURATION
 
 ########## SECRET CONFIGURATION
-SECRET_KEY = get_env_setting('{{ project_name }}_SECRET_KEY'
+SECRET_KEY = get_env_setting('{{ project_name }}_SECRET_KEY')
 ########## END SECRET CONFIGURATION
