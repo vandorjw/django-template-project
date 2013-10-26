@@ -1,0 +1,26 @@
+{% templatetag openblock %} extends "base.html" {% templatetag closeblock %}
+
+{% templatetag openblock %} block content {% templatetag closeblock %}
+
+<div class="container">
+  {% templatetag openblock %} if object_list {% templatetag closeblock %} 
+  {% templatetag openblock %} for article in object_list {% templatetag closeblock %} 
+    <div class="row">
+      <div class="col-md-12">
+
+        <a href="{% templatetag openvariable %} article.get_absolute_url {% templatetag closevariable %}" 
+          title="{% templatetag openvariable %} article.name {% templatetag closevariable %}" 
+          target="_self">
+
+          <h4>{% templatetag openvariable %}article{% templatetag closevariable %}</h4>
+        </a>
+
+        <p>{% templatetag openvariable %}article.meta_description{% templatetag closevariable %}</p>
+      </div>
+    </div>
+  {% templatetag openblock %} endfor {% templatetag closeblock %}
+  {% templatetag openblock %} endif {% templatetag closeblock %}  
+</div>
+
+{% templatetag openblock %} endblock content {% templatetag closeblock %}
+

@@ -1,0 +1,61 @@
+{% templatetag openblock %} extends "base.html" {% templatetag closeblock %}
+{% templatetag openblock %} block title {% templatetag closeblock %}Contact Us{% templatetag openblock %} endblock title {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block content {% templatetag closeblock %}
+<div class="container">
+  <div class="row">   
+    <div class="col-md-6">
+    <div class="panel panel-default">
+          <div class="panel-heading">
+              <h4 class="text-center">Contact Form</h4>
+          </div>
+          <div class="panel-body">
+            <form class="form-horizontal" role="form" action="{% templatetag openvariable %} contactpage {% templatetag closevariable %}" method="post">
+              {% templatetag openblock %} csrf_token {% templatetag closeblock %}
+              {% templatetag openvariable %} form.non_field_errors {% templatetag closevariable %}
+
+              <div class="form-group">
+                <span class="help-block">
+                  {% templatetag openvariable %} form.sender.errors {% templatetag closevariable %}
+                </span>
+
+                <label for="id_sender" class="col-lg-2 control-label">Email</label>
+                <div class="col-lg-10">
+                  {% templatetag openvariable %} form.sender {% templatetag closevariable %}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <span class="help-block">
+                  {% templatetag openvariable %} form.subject.errors {% templatetag closevariable %}
+                </span>
+                <label for="id_subject" class="col-lg-2 control-label">Subject</label>
+                <div class="col-lg-10">
+                  {% templatetag openvariable %} form.subject {% templatetag closevariable %}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <span class="help-block">{% templatetag openvariable %} form.message.errors {% templatetag closevariable %}</span>
+                <label for="id_message" class="col-lg-2 control-label">Message</label>
+                <div class="col-lg-10">
+                  {% templatetag openvariable %} form.message {% templatetag closevariable %}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+              
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+</div>
+
+{% templatetag openblock %} endblock content {% templatetag closeblock %}
