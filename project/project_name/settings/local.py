@@ -20,15 +20,7 @@ TEMPLATE_DEBUG = DEBUG
 
 
 ########## EMAIL CONFIGURATION
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST_PASSWORD = get_env_setting('{{ project_name }}_EMAIL_PASS')
-EMAIL_HOST_USER = get_env_setting('{{ project_name }}_EMAIL_USER')
-EMAIL_HOST = get_env_setting('{{ project_name }}_EMAIL_HOST')
-EMAIL_PORT = get_env_setting('{{ project_name }}_EMAIL_PORT')
-EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 ########## END EMAIL CONFIGURATION
 
 
