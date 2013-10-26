@@ -1,83 +1,85 @@
 ========================
-django-twoscoops-project
+django-template-project
 ========================
 
-A project template for Django 1.5.
+
+A project template for Django 1.5, based off django-twoscoops-project
 
 To use this project follow these steps:
 
 #. Create your working environment
 #. Install Django
-#. Create the new project using the django-two-scoops template
+#. Create the new project using this version of the django template.
 #. Install additional dependencies
-#. Use the Django admin to create the project
+#. Create the project
 
-*note: these instructions show creation of a project called "icecream".  You
-should replace this name with the actual name of your project.*
 
 Working Environment
 ===================
-
-You have several options in setting up your working environment.  We recommend
-using virtualenv to separate the dependencies of your project from your system's
-python environment.  If on Linux or Mac OS X, you can also use virtualenvwrapper to help manage multiple virtualenvs across different projects.
-
-Virtualenv Only
----------------
-
-First, make sure you are using virtualenv (http://www.virtualenv.org). Once
-that's installed, create your virtualenv::
-
-    $ virtualenv --distribute icecream
-
-You will also need to ensure that the virtualenv has the project directory
-added to the path. Adding the project directory will allow `django-admin.py` to
-be able to change settings using the `--settings` flag.
-
+ 
 Virtualenv with virtualenvwrapper
---------------------------
+--------------------------------
 
-In Linux and Mac OSX, you can install virtualenvwrapper (http://virtualenvwrapper.readthedocs.org/en/latest/),
-which will take care of managing your virtual environments and adding the
-project path to the `site-directory` for you::
+First we need to install pip. You can either choose to install pip from the repository, or from a tarbar.
+Please note that Debian Wheezy ships with an older version of pip which does not check the validity of the packages downloaded.
+Please replace X.X with the current-stable version number for pip.::
 
-    $ mkdir icecream
-    $ mkvirtualenv -a icecream icecream-dev
-    $ cd icecream && add2virtualenv `pwd`
+    $ curl -O https://pypi.python.org/packages/source/p/pip/pip-X.X.tar.gz
+    $ tar xvfz pip-X.X.tar.gz
+    $ cd pip-X.X
+    $ sudo python setup.py install
 
-Windows
-----------
+Now that pip is installed, use it to grab virtualenv and virtualenvwrapper.::
 
-In Windows, or if you're not comfortable using the command line, you will need
-to add a `.pth` file to the `site-packages` of your virtualenv. If you have
-been following the book's example for the virtualenv directory (pg. 12), then
-you will need to add a python pathfile named `_virtualenv_path_extensions.pth`
-to the `site-packages`. If you have been following the book, then your
-virtualenv folder will be something like::
+    $ sudo pip install virtualenv virtualenvwrapper
 
-`~/.virtualenvs/icecream/lib/python2.7/site-directory/`
+I place my VirtualEnvironments under /var/virtualenvs/. By default it does not exist.
+Create it, and give yourself write permission by running the following.::
 
-In the pathfile, you will want to include the following code (from
-virtualenvwrapper):
+    $ sudo mkdir /var/virtualenvs/
+    $ sudo usermod -a -G adm YOURUSERNAME
+    $ sudo chgrp -R adm /var/virtualenvs/
+    $ sudo chmod -R g+w /var/virtualenvs/
 
-    import sys; sys.__plen = len(sys.path)
-    /home/<youruser>/icecream/icecream/
-    import sys; new=sys.path[sys.__plen:]; del sys.path[sys.__plen:]; p=getattr(sys,'__egginsert',0); sys.path[p:p]=new; sys.__egginsert = p+len(new)
+Add the following to your .bashrc file if you have the same setup as myself.::
+
+    export WORKON_HOME=/var/virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh
+
+!notice! log-out and log back in for the changes to take effect !notice!
+
+We are now ready to create our virtual python environment.::
+
+    $ mkvirtualenv your_domain_here
+    $ pip install django
+    
+Notice the lack of 'sudo'. After creating the virtualenv, your shell should have changed to (your_domain_here) in front.
+If this did not occur, try running::
+
+    $ workon your_domain_here
+
+I put my sites under /var/www. For example /var/www/domain.com/, /var/www/vandorjw.me/, etc
+You will find a index.html file under /var/www by default.::
+
+    $ sudo mkdir /var/www/default
+    $ mv /var/www/index.html /var/www/default
+
+    
+I will post my apache config files on a later day.
+
 
 Installing Django
 =================
 
-To install Django in the new virtual environment, run the following command::
-
-    $ pip install django
+To install Django in the new virtual environment, see the section about "VirtualEnv"
 
 Creating your project
 =====================
 
-To create a new Django project called '**icecream**' using
-django-twoscoops-project, run the following command::
+To create a new Django project called '**MY_PROJECT**' using
+django-template-project, run the following command::
 
-    $ django-admin.py startproject --template=https://github.com/twoscoops/django-twoscoops-project/archive/master.zip --extension=py,rst,html icecream_project
+    $ django-admin.py startproject --template=https://github.com/vandorjw/django-template-project/archive/master.zip --extension=py,rst,html MY_PROJECT
 
 Installation of Dependencies
 =============================
@@ -95,10 +97,20 @@ For production::
 *note: We install production requirements this way because many Platforms as a
 Services expect a requirements.txt file in the root of projects.*
 
+
+Environment Variables
+======================
+
+
+A good idea. More info to be added later
+
+
+
+
 Acknowledgements
 ================
 
-- Many thanks to Randall Degges for the inspiration to write the book and django-skel.
-- All of the contributors_ to this project.
+    - Many thanks to Randall Degges for the inspiration to write the book and django-skel.
+    - All of the contributors_ to this project.
 
-.. _contributors: https://github.com/twoscoops/django-twoscoops-project/blob/master/CONTRIBUTORS.txt
+.. _contributors: https://github.com/vandorjw/django-template-project/blob/master/CONTRIBUTORS.txt

@@ -12,17 +12,17 @@ def get_env_setting(setting):
         raise ImproperlyConfigured(error_msg)
 
 ########## HOST CONFIGURATION
-# See: https://docs.djangoproject.com/en/1.5/releases/1.5/#allowed-hosts-required-in-production
 ALLOWED_HOSTS = []
 ########## END HOST CONFIGURATION
+
 
 ####
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 ####
 
+
 ########## EMAIL CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = get_env_setting('{{ project_name }}_EMAIL_PASS')
 EMAIL_HOST_USER = get_env_setting('{{ project_name }}_EMAIL_USER')
@@ -33,6 +33,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 ########## END EMAIL CONFIGURATION
+
 
 ########## DATABASE CONFIGURATION
 DATABASES = {
@@ -49,7 +50,6 @@ DATABASES = {
 
 
 ########## CACHE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
@@ -60,6 +60,5 @@ CACHES = {
 
 
 ########## SECRET CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = get_env_setting('{{ project_name }}_SECRET_KEY'
 ########## END SECRET CONFIGURATION
